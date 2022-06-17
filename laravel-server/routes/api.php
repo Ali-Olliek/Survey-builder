@@ -14,16 +14,15 @@ Route::group(['prefix'=>'v1'], function(){
     Route::group(['prefix'=>'User'], function(){
         Route::POST('/Login', [UserController::class, "logIn"])->name("log-in");
         Route::POST('/SignUp', [UserController::class, "signUp"])->name("sign-up");
-        Route::POST('/Submit', [UserController::class, "submitAnswers"])->name("submit");
-    });
-    Route::group(['prefix' => 'Surveys'], function(){
-        Route::GET('/All', [SurveysController::class, "displayAll"])->name("display-all");
-        Route::GET('/{id}', [SurveysController::class, "displayOne"])->name("display-one");
-    });
-    Route::group(['prefix'=>'Admin'], function(){
-        Route::group(['middleware'=>'role.admin'], function(){
-            Route::POST('/CreateSurvey', [AdminsController::class, "createSurvey"])->name("create-survey");
+        Route::group(['middleware'=>'role.user'], function(){
+            Route::POST('/Submit', [UserController::class, "submitAnswers"])->name("submit");
+            });
+            Route::group(['prefix' => 'Surveys'], function(){
+                Route::GET('/All', [SurveysController::class, "displayAll"])->name("display-all");
+                Route::GET('/{id}', [SurveysController::class, "displayOne"])->name("display-one");
+            });
+            Route::group(['prefix'=>'Admin'], function(){
+                Route::POST('/CreateSurvey', [AdminsController::class, "createSurvey"])->name("create-survey");
         });
-
     });
 });
