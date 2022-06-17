@@ -11,13 +11,14 @@ class CreateAnswersTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up(){
+        Schema::create('answers', function (Blueprint $table) {
         $table->id();
         $table->json('content');
         $table->bigInteger('user_id');
         $table->bigInteger('question_id');
-    }
+    });
+}
 
     /**
      * Reverse the migrations.

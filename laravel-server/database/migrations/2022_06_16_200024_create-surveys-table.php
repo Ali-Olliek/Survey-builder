@@ -11,13 +11,14 @@ class CreateSurveyTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up(){
+        Schema::create('surveys', function (Blueprint $table) {
         $table->id();
         $table->string('title');
         $table->string('created_by');
         $table->bigInteger('user_Id');
-    }
+    });
+}
 
     /**
      * Reverse the migrations.
