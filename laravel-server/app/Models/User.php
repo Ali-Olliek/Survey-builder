@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin'
     ];
 
     /**
@@ -42,11 +43,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    function answers(){
-        return $this->hasMany(Answer::class);
-    }
-
-    function surveys(){
-        return $this->hasMany(Survey::class);
+    function responses(){
+        return $this->hasMany(Response::class);
     }
 }

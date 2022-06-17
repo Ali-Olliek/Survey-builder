@@ -9,8 +9,8 @@ class Question extends Model
 {
     use HasFactory;
 
-    function answer(){
-        return $this->hasOne(Answer::class);
+    function answers(){
+        return $this->hasMany(Answer::class);
     }
 
     function survey(){

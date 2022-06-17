@@ -13,7 +13,7 @@ class Answer extends Model
         return $this->belongsTo(Question::class);
     }
 
-    function user(){
-        return $this->belongsTo(User::class);
+    function response(){
+        return $this->hasOne(Response::class);
     }
 }
