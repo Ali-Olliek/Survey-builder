@@ -12,8 +12,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['prefix'=>'v1'], function(){
     Route::group(['prefix'=>'User'], function(){
-        Route::POST('/Login', [UserController::class, "logIn"])->name("log-in");
-        Route::POST('/SignUp', [UserController::class, "signUp"])->name("sign-up");
+        Route::POST('/Login', [UsersController::class, "logIn"])->name("log-in");
+        Route::POST('/SignUp', [UsersController::class, "signUp"])->name("sign-up");
         Route::group(['middleware'=>'role.user'], function(){
             Route::POST('/Submit', [UserController::class, "submitAnswers"])->name("submit");
             });
