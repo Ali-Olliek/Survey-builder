@@ -14,9 +14,8 @@ class CreateUserResponseTable extends Migration
     public function up(){
         Schema::create('userReponses', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->bigInteger('answer_id');
             $table->string('reponse');
+            $table->bigInteger('user.response_id');
         });
     }
 

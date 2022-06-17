@@ -16,7 +16,6 @@ class CreateSurveysTable extends Migration
         $table->id();
         $table->string('title');
         $table->string('created_by');
-        $table->bigInteger('user_Id');
     });
 }
 

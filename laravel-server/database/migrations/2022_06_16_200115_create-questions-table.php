@@ -16,7 +16,8 @@ class CreateQuestionsTable extends Migration
         $table->id();
         $table->string('question_type');
         $table->json('content');
-        $table->bigInteger('survey_id');
+        $table->bigInteger('survey.question_id');
+        $table->bigInteger('question.answer_id');
     });
 }
     /**
