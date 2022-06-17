@@ -22,7 +22,8 @@ Route::group(['prefix'=>'v1'], function(){
                 Route::GET('/{id}', [SurveysController::class, "displayOne"])->name("display-one");
             });
             Route::group(['prefix'=>'Admin'], function(){
-                Route::POST('/CreateSurvey', [AdminsController::class, "createSurvey"])->name("create-survey");
+                Route::POST('/CreateSurveys', [AdminsController::class, "createSurveys"])->name("create-survey");
+                Route::POST('/CreateQuestions', [AdminsController::class, "createQuestions"])->name("create-questions");
         });
     });
 });
