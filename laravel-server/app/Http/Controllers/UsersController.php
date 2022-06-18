@@ -1,21 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
+use Hash;
+use Validator;
 
 use Illuminate\Http\Request;
-use Validator;
 use App\Models\User;
-use Hash;
+use App\Models\userResponse;
 
-class UsersController extends Controller{
+class UsersController extends Controller {
 
-    function submitResponse(Request $request, $user_id){      
-        foreach($response as $request->response){
-            $response = new Response;
-            $response -> user_id = $user_id;
-            $response -> answer_id = $request->answer_id;
-            $response -> response = $request -> response;
-        }    
+    function submitResponse(Request $request){   
+        for($i = 0; $i < count($request["user_answers"]); $i++){
+            $response = new userResponse;
+            $response -> user_response_id = $request->user_response_id;
+            $response -> answer_response_id = $request["user_answers"][$i]["answer_id"];
+            $response -> response = $request["user_answers"][$i]["response"];
+            $response -> save();
+        }
+
+        return response()->json([
+            "status" => "success",
+            "Response"=> $response
+        ]);
     }
 
     function signUp(Request $request){

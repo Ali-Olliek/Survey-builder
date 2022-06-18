@@ -4,18 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserResponseTable extends Migration
-{
+class CreateUserResponseTable extends Migration{
     /**
      * Run the migrations.
      *
      * @return void
      */
     public function up(){
-        Schema::create('userReponses', function (Blueprint $table) {
+        Schema::create('user_responses', function (Blueprint $table) {
             $table->id();
-            $table->string('reponse');
+            $table->string('response');
             $table->bigInteger('user_response_id');
+            $table->bigInteger('answer_response_id');
             $table->timestamps();
         });
     }
