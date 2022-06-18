@@ -15,7 +15,8 @@ class CreateUserResponseTable extends Migration
         Schema::create('userReponses', function (Blueprint $table) {
             $table->id();
             $table->string('reponse');
-            $table->bigInteger('user.response_id');
+            $table->bigInteger('user_response_id');
+            $table->timestamps();
         });
     }
 
