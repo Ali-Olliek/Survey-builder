@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Survey;
 use App\Models\Question;
 use App\Models\Answer;
+use App\Models\userResponse;
+use App\Models\user;
 
 class SurveysController extends Controller {
     function displayAll(){
@@ -34,6 +36,16 @@ class SurveysController extends Controller {
         }  
         return response()->Json([
             "status" => "Survey Does Not Exist!"
+        ]);
+    }
+
+    function displayUsersFilledSurvey(){
+        $responses = userResponse::select("user_response_id")->distinct()->get();
+        $surveys = Survey::all();
+        return response()->json([
+            "status" => "success",
+            "User Count" => count($responses),
+            "Surveys on Site" => count($surveys)
         ]);
     }
 }
