@@ -7,6 +7,9 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\userResponse;
+use App\Models\Answer;
+use App\Models\Survey;
+use App\Models\Question;
 
 class UsersController extends Controller {
 
@@ -20,8 +23,30 @@ class UsersController extends Controller {
         }
 
         return response()->json([
+            "status" => "success"
+        ]);
+    }
+
+    function displayUserStatistics($user_id){
+        $responses = userResponse::where("user_response_id","=", $user_id)->get();
+        $OverAllResponses = count($responses);
+        $questions_answered = [];
+        $surveys_filled = [];
+        for($i = 0; $i < count($responses); $i++){
+            $answers = Answer::where("id","=", $responses[$i]["answer_response_id"])->get();
+            $questions = Question::where("id", "=", $answers[0]["question_answer_id"])->get();
+            $surveys = Survey::where("id", "=", $questions[0]["survey_question_id"])->distinct()->get();
+            array_push($questions_answered, $questions);
+            if(!in_array($surveys, $surveys_filled)){
+                array_push($surveys_filled, $surveys);
+            }
+        }
+
+        return response()->json([
             "status" => "success",
-            "Response"=> $response
+            "Surveys Filled" => $surveys_filled,
+            "Questions Answered" => $questions_answered,
+            "Responses Given" => $OverAllResponses,
         ]);
     }
 

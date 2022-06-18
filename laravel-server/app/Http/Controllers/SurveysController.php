@@ -16,7 +16,7 @@ class SurveysController extends Controller {
         ], 200);
     }
 
-    function displaySurvey($id){
+    function displaySurvey($survey_id){
         $survey = Survey::where("id", "=", $id)->first();
         if($survey){
             $questions = Question::where("survey_question_id", "=", $id)->get();

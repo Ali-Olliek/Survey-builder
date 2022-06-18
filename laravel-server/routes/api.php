@@ -15,6 +15,7 @@ Route::group(['prefix'=>'v1'], function(){
         Route::POST('/Login', [UsersController::class, "logIn"])->name("log-in");
         Route::POST('/SignUp', [UsersController::class, "signUp"])->name("sign-up");
         Route::POST('/Submit', [UsersController::class, "submitResponse"])->name("submit");
+        Route::GET('/Statistics/{id}', [UsersController::class, "displayUserStatistics"])->name("submit");
             });
         Route::group(['prefix' => 'Surveys'], function(){
             Route::GET('/All', [SurveysController::class, "displayAll"])->name("display-all");
