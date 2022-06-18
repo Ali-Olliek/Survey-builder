@@ -14,7 +14,6 @@ Route::group(['prefix'=>'v1'], function(){
     Route::group(['prefix'=>'User'], function(){
         Route::POST('/Login', [UsersController::class, "logIn"])->name("log-in");
         Route::POST('/SignUp', [UsersController::class, "signUp"])->name("sign-up");
-        Route::group(['middleware'=>'role.user'], function(){
             Route::POST('/Submit', [UserController::class, "submitAnswers"])->name("submit");
             });
             Route::group(['prefix' => 'Surveys'], function(){
@@ -23,7 +22,5 @@ Route::group(['prefix'=>'v1'], function(){
             });
             Route::group(['prefix'=>'Admin'], function(){
                 Route::POST('/CreateSurveys', [AdminsController::class, "createSurveys"])->name("create-survey");
-                Route::POST('/CreateQuestions', [AdminsController::class, "createQuestions"])->name("create-questions");
         });
     });
-});
