@@ -41,12 +41,12 @@ class UsersController extends Controller {
                 array_push($surveys_filled, $surveys);
             }
         }
-
         return response()->json([
             "status" => "success",
             "Surveys Filled" => $surveys_filled,
             "Questions Answered" => $questions_answered,
-            "Responses Given" => $OverAllResponses,
+            "User Responses" => $responses,
+            "Responses Given" => $OverAllResponses
         ]);
     }
 
@@ -74,7 +74,7 @@ class UsersController extends Controller {
         ], 201);
     }
 
-    function logIn(){
+    function logIn(Request $request){
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string|min:6',
@@ -91,8 +91,9 @@ class UsersController extends Controller {
         }
 
         return response()->json([
-            $this->respondWithToken($token),
-            'user' => $user->name
+            "status" => "success",
+            'username' => $user->name,
+            'user_id' => $user->id
         ], 200);
     }
 }
