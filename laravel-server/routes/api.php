@@ -18,7 +18,7 @@ Route::group(['prefix'=>'v1'], function(){
             });
             Route::group(['prefix' => 'Surveys'], function(){
                 Route::GET('/All', [SurveysController::class, "displayAll"])->name("display-all");
-                Route::GET('/{id}', [SurveysController::class, "displayOne"])->name("display-one");
+                Route::GET('/{id}', [SurveysController::class, "displaySurvey"])->name("display-one");
             });
             Route::group(['prefix'=>'Admin'], function(){
                 Route::POST('/CreateSurveys', [AdminsController::class, "createSurveys"])->name("create-survey");
