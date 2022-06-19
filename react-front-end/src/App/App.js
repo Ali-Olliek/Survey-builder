@@ -4,7 +4,8 @@ import Login from '../components/Login';
 import Surveys from '../components/Surveys';
 import SignUp from '../components/SignUp';
 import CreateSurvey from '../components/CreateSurvey';
-import DropDown from '../components/DropDown';
+import Survey from '../components/Survey';
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
         <Route path="/Surveys" element={<Surveys />}>
         </Route>
         <Route path="/CreateSurvey" element={<CreateSurvey selected={selected} setSelected = {setSelected}/>}>
+        </Route>
+        <Route path="/Survey" element={<Survey/>}>
         </Route>
       </Routes>
     </Router>

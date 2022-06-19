@@ -7,12 +7,12 @@ export default function CreateSurvey({onAdd, selected, setSelected}) {
     const [questions, setQuestions] = useState("");  
     const [answers, setAnswers] = useState("");
 
-    // const handleTitleInput = (event) => {
-    //   setTitle({ ...title, title: event.target.value });
-    // };
-    // const handleCreatedInput = (event) => {
-    //   setCreatedBy({ ...createdBy, createdBy: event.target.value });
-    // };
+    const handleTitleInput = (event) => {
+      setTitle({ ...title, title: event.target.value });
+    };
+    const handleCreatedInput = (event) => {
+      setCreatedBy({ ...createdBy, createdBy: event.target.value });
+    };
 
 
     const handleSubmit = (e) => {
@@ -32,9 +32,8 @@ export default function CreateSurvey({onAdd, selected, setSelected}) {
         <div className="survey-control">
           <label>Survey Title</label>
           <input
-            type="text"
-            placeholder="Add A Title"
-          />
+          type="text" 
+          placeholder="Add A Title" />
         </div>
 
         <div className="survey-control">
@@ -42,12 +41,17 @@ export default function CreateSurvey({onAdd, selected, setSelected}) {
           <input
             type="text"
             placeholder="Created By"
+            onChange={handleCreatedInput}
           />
         </div>
-        <div>
-          <DropDown selected={selected} setSelected={setSelected}/>
+
+        <div className="survey-control">
+          <label>Question</label>
+          <input type="text" placeholder="Add Question" />
         </div>
-        
+        <div>
+          <DropDown selected={selected} setSelected={setSelected} />
+        </div>
       </form>
     );
 }
