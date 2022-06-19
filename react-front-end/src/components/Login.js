@@ -33,8 +33,11 @@ export default function Login() {
                 let user = [];
                 user.push(response.data.username, response.data.user_id)
                 localStorage.setItem("user", JSON.stringify(user));
+                console.log("Logged In")
+                setValues({Password: "", Email: "" })
+                setValid(true);
+                return response.data;
               }
-              return response.data;
             });
         };
       
@@ -43,7 +46,7 @@ return (
     <form className="register-form">
       <h2>Sign In</h2>
       <p>Welcome Back</p>
-      {submitted && valid ? (
+      {valid ? (
         <div className="success-message">
           Success! Thank you for registering
         </div>
