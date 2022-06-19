@@ -39,37 +39,39 @@ export default function Login() {
         };
       
 return (
-    <div className="form-container">
-      <form className="register-form">
-        {submitted && valid ? (
-          <div className="success-message">
-            Success! Thank you for registering
-          </div>
-        ) : null}
-        <input
-          onChange={handleEmailInput}
-          value={values.Email}
-          className="form-field"
-          placeholder="Email"
-          name="Email"
-        />
-        {submitted && !values.Email ? (
-          <span>Please enter an Email</span>
-        ) : null}
-        <input
-          type={'password'}
-          onChange={handlePasswordInput}
-          value={values.Password}
-          className="form-field"
-          placeholder="Password"
-          name="Password"
-        />
-        {submitted && !values.Password ? (
-          <span>Please enter an Password</span>
-        ) : null}
-        <button onClick={handleSubmit} type="submit">Login</button>
-      </form>
-    </div>
-    )
+  <div className="form-container">
+    <form className="register-form">
+      <h2>Sign In</h2>
+      <p>Welcome Back</p>
+      {submitted && valid ? (
+        <div className="success-message">
+          Success! Thank you for registering
+        </div>
+      ) : null}
+      <input
+        onChange={handleEmailInput}
+        value={values.Email}
+        className="form-field"
+        placeholder="Email"
+        name="Email"
+      />
+      {submitted && !values.Email ? <span>Please enter an Email</span> : null}
+      <input
+        type={"password"}
+        onChange={handlePasswordInput}
+        value={values.Password}
+        className="form-field"
+        placeholder="Password"
+        name="Password"
+      />
+      {submitted && !values.Password ? (
+        <span>Please enter an Password</span>
+      ) : null}
+      <button onClick={handleSubmit} type="submit">
+        Login
+      </button>
+    </form>
+  </div>
+);
   }
 
