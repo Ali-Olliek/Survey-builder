@@ -26,12 +26,25 @@ button {
     border-radius: 5px;
 }
 
-.surveys-container {
-    display: grid;
-    border: 1px solid black;
-    padding-inline: 20px;
+#root {
+    display: flex;
+    align-items:center;
+    justify-content: center;
 }
 
-.survey {
+.Survey-container {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 25%;
+    gap: 40px;
+}
+
+.Card {
+    width: auto;
+    height: 300px;
     border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px;
 }

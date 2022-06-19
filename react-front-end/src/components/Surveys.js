@@ -10,18 +10,18 @@ export default function Surveys() {
   }, []);
 
   return (
-    <>
+    <div className='Survey-container'>
       {Surveys.map(Survey => {
         return (
           <>
-            <div className="Survey-card" key={Survey.id}>
+            <div className={`Card Survey${Survey.id}`} key={Survey.id}>
               <h1 className="Survey-title">{JSON.stringify(Survey.title)}</h1>
               <h4 className="Survey-created-by">{JSON.stringify(Survey.created_by)}</h4>
             </div>
           </>
         );
       })}
-    </>
+    </div>
   );
 }
 
