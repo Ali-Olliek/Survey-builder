@@ -8,7 +8,7 @@
 .register-form {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 30vw;
     height: 40vh;
     border: 2px solid black;
@@ -24,4 +24,14 @@
 button {
     height: 60px;
     border-radius: 5px;
+}
+
+.surveys-container {
+    display: grid;
+    border: 1px solid black;
+    padding-inline: 20px;
+}
+
+.survey {
+    border: 1px solid black;
 }
