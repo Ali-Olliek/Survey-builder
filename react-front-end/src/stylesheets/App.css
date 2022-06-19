@@ -48,3 +48,19 @@ button {
     border-radius: 10px;
     box-shadow: 5px 5px;
 }
+
+.survey-control {
+    width: 100px;
+    margin-block: 40px;
+    font-weight: bold;
+}
+
+.survey-control > input {
+    height: 40px;
+    border-radius: 5px;
+}
+
+.dropdown {
+    border: 1px solid black;
+    padding:10px;
+}
