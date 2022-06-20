@@ -36,7 +36,7 @@ export default function Login() {
                 console.log("Logged In")
                 setValues({Password: "", Email: "" })
                 setValid(true);
-                return response.data;
+                window.location.href = "/Surveys"
               }
             });
         };

@@ -42,6 +42,7 @@ export default function SignUp() {
             let user = [];
             user.push(response.data.user.name, response.data.user.id);
             localStorage.setItem("user", JSON.stringify(user));
+            window.location.href = "/Surveys"
         }
         return response.data;
       });
