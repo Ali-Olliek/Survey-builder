@@ -26,3 +26,13 @@ Route::group(['prefix'=>'v1'], function(){
             Route::POST('/CreateSurveys', [AdminsController::class, "createSurveys"])->name("create-survey");
     });
 });
+
+// Routes Cataloge:
+
+// Login, SignUp => User Auth
+// Submit => Submit Answers Corresponding to Survey's Questions
+// Statistics/{id} => Displays Count of user answers, and surveys participated in.
+// All => Displays all Surveys in DB
+// DisplaySurvey => Displays the content of a single survey
+// SurveysFilled => Display the amount of distinct users filling the given survey
+// CreateSurveys => Admin Creates Survey
