@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
 
 export default function SignUp() {
+  
+  // States
   const [values, setValues] = useState({
     username: "",
     Email: "",
@@ -12,6 +13,7 @@ export default function SignUp() {
   const [submitted, setSubmitted] = useState(false);
   const [valid, setValid] = useState(false);
   
+  // Input Handles
   const handleUserNameInput = (event) => {
     setValues({ ...values, Username: event.target.value });
   };
@@ -22,14 +24,14 @@ export default function SignUp() {
     setValues({ ...values, Password: event.target.value });
   };
 
+  // Submit Handles
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
     let username = values.Username;
     let email = values.Email;
     let password = values.Password;
-    console.log(username)
-    console.log(email)
-    console.log(password)
+
     return axios
       .post("http://127.0.0.1:8000/api/v1/Users/SignUp", {
         username,

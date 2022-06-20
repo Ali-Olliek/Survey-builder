@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Surveys() {
+  
   const [Surveys, setSurveys] = useState(["No Surveys To Fill"]);
 
   useEffect(() => {
@@ -9,12 +10,12 @@ export default function Surveys() {
       .then((json) => setSurveys(json.surveys));
   }, []);
 
-function goToSurvey (event) {
-  const id = event.target.id
-  console.log(id)
-  localStorage.setItem("Survey_Id", id)
-  window.location.href = `/Survey`
-} 
+  function goToSurvey (event) {
+    const id = event.target.id
+    console.log(id)
+    localStorage.setItem("Survey_Id", id)
+    window.location.href = `/Survey`
+  } 
 
   return (
     <div className='Survey-container'>
@@ -25,8 +26,8 @@ function goToSurvey (event) {
               id={`${Survey.id}`}
               onClick={goToSurvey}
               className={`Card Survey${Survey.id}`}
-              key={Survey.id}
-            >
+              key={Survey.id}>
+                
               <h1 id={`${Survey.id}`} 
               className="Survey-title">
                 {JSON.stringify(Survey.title)}
