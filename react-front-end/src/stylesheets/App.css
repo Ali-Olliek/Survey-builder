@@ -7,6 +7,10 @@
     font-family: Poppins;
     src: url(../assets/fonts/Poppins-Light.ttf);
 }
+@font-face {
+    font-family: Poppinsb ;
+    src: url(../assets/fonts/Poppins-Bold.ttf);
+}
 
 /* -------------------- */
 * {
@@ -159,4 +163,39 @@ button {
     text-align: center;
     padding: 20px;
     
+}
+
+
+.surveyEle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    top: 20%;
+    right: 35%;
+    left: 35%;
+    background-color: #FFD481;
+    width: 30%;
+    height: 50vh;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px black;
+}
+
+.surveyInfo {
+    font-family: Sofia Pro;
+}
+
+.questions {
+    font-family: poppins;
+}
+
+.question {
+    font-family: poppinsb;
+}
+
+.sur {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(114.44deg, rgba(0, 180, 219, 0) 31.36%, #0083B0 99.37%);
 }
