@@ -40,7 +40,7 @@ export default function Login() {
           if (response.status === 200) {
             let user = [];
             user.push(response.data.username, response.data.user_id, response.data.is_admin)
-            localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("user", user);
             console.log("Logged In")
 
             // Admin/User Switch
@@ -57,40 +57,42 @@ export default function Login() {
       
   return (
     <div className="form-container">
-      <form className="register-form">
-        <h2>Sign In</h2>
-        <p>Welcome Back</p>
-        {valid ? (
-          <div className="success-message">
-            Success! Thank you for registering
-          </div>
-        ) : null}
-        <input
-          onChange={handleEmailInput}
-          value={values.Email}
-          className="form-field"
-          placeholder="Email"
-          name="Email"
-        />
-        {submitted && !values.Email ? <span>Please enter an Email</span> : null}
-        <input
-          type={"password"}
-          onChange={handlePasswordInput}
-          value={values.Password}
-          className="form-field"
-          placeholder="Password"
-          name="Password"
-        />
-        {submitted && !values.Password ? (
-          <span>Please enter an Password</span>
-        ) : null}
-        <button onClick={handleSubmit} type="submit">
-          Login
-        </button>
-        <button onClick={goToSignUp}>
-          Sign Up?
-        </button>
-      </form>
+      <div >
+        <form className="register-form">
+          <h2>Sign In</h2>
+          <p>Welcome Back</p>
+          {valid ? (
+            <div className="success-message">
+              Success! Thank you for registering
+            </div>
+          ) : null}
+          <input
+            onChange={handleEmailInput}
+            value={values.Email}
+            className="form-field"
+            placeholder="Email"
+            name="Email"
+          />
+          {submitted && !values.Email ? (
+            <span>Please enter an Email</span>
+          ) : null}
+          <input
+            type={"password"}
+            onChange={handlePasswordInput}
+            value={values.Password}
+            className="form-field"
+            placeholder="Password"
+            name="Password"
+          />
+          {submitted && !values.Password ? (
+            <span>Please enter an Password</span>
+          ) : null}
+          <button className = "btn Primary" onClick={handleSubmit} type="submit">
+            Login
+          </button>
+          <button className = "btn secondary"onClick={goToSignUp}>Sign Up?</button>
+        </form>
+      </div>
     </div>
   );
 }
