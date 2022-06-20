@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import DropDown from './DropDown';
-import Answers from './Answers';
 import axios from 'axios';
 
 export default function CreateSurvey({ selected, setSelected}) {
@@ -19,6 +18,12 @@ export default function CreateSurvey({ selected, setSelected}) {
     const handleCreatedInput = (event) => {
       setValues({ ...values, createdBy: event.target.value });
     };
+    const handleQuestionInput = (event) => {
+      setValues({ ...values, questions: event.target.value });
+    };
+    const handleAnswerInput = (event) => {
+      setValues({ ...values, answers: event.target.value });
+    };
 
 
     const handleSubmit = async (event) => {
@@ -26,21 +31,23 @@ export default function CreateSurvey({ selected, setSelected}) {
       if(!values.title && !values.question){
         alert("Please Fill Out a Title and a Question")
       }
-      let surveyTitle = "TestTitle";
-      let surveyCreatedBy = "TestCreate";
+      let surveyTitle = values.title;
+      let surveyCreatedBy = values.createdBy;
 
       let question = [];
-      let content = "question 1"
-      let question_type = "Question type 1";
+      let content = values.questions
+      let question_type = "Question Type"; // Need to get selected option from component
       question.push(question_type)
       question.push(content)
       let answers = [];
-      answers.push("Test Answer", "Test Answer 2")
+      content = values.answers
+      answers.push(content)
       question.push(answers)
+
       let questions = [];
       questions.push(question)
       
-      console.log(answers)
+      console.log(values.answers)
       console.log(question)
       console.log(questions)
       
@@ -80,13 +87,22 @@ export default function CreateSurvey({ selected, setSelected}) {
 
         <div className="survey-control">
           <label>Question</label>
-          <input type="text" placeholder="Add Question" />
+          <input
+            onChange={handleQuestionInput}
+            type="text"
+            placeholder="Add Question"
+          />
         </div>
         <div>
           <DropDown selected={selected} setSelected={setSelected} />
         </div>
-        <div>
-          <Answers />
+        <div className="survey-control">
+          <label>Answer</label>
+          <input
+            onChange={handleAnswerInput}
+            type="text"
+            placeholder="Add Answer"
+          />
         </div>
         <button onClick={handleSubmit} type="submit">
           Submit Survey
