@@ -18,7 +18,11 @@ export default function Login() {
       const handlePasswordInput = (event) => {
         setValues({ ...values, Password: event.target.value });
       };
-
+      const goToSignUp = (e) => {
+        e.preventDefault()
+        console.log("Hello")
+        window.location.href = "/SignUp"
+      }
       const handleSubmit = async (event) => {
         event.preventDefault();
         let email = values.Email
@@ -72,6 +76,9 @@ return (
       ) : null}
       <button onClick={handleSubmit} type="submit">
         Login
+      </button>
+      <button onClick={goToSignUp}>
+        Sign Up?
       </button>
     </form>
   </div>
