@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Surveys({id}) {
+export default function Surveys() {
   const [Surveys, setSurveys] = useState(["No Surveys To Fill"]);
 
   useEffect(() => {
@@ -12,7 +12,8 @@ export default function Surveys({id}) {
 function goToSurvey (event) {
   const id = event.target.id
   console.log(id)
-  window.location.href = `/Survey${id}`
+  localStorage.setItem("Survey_Id", id)
+  window.location.href = `/Survey`
 } 
 
   return (
