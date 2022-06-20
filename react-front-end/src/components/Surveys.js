@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Surveys() {
+export default function Surveys({id}) {
   const [Surveys, setSurveys] = useState(["No Surveys To Fill"]);
 
   useEffect(() => {
@@ -9,14 +9,31 @@ export default function Surveys() {
       .then((json) => setSurveys(json.surveys));
   }, []);
 
+function goToSurvey (event) {
+  const id = event.target.id
+  console.log(id)
+  window.location.href = `/Survey${id}`
+} 
+
   return (
     <div className='Survey-container'>
       {Surveys.map(Survey => {
         return (
           <>
-            <div className={`Card Survey${Survey.id}`} key={Survey.id}>
-              <h1 className="Survey-title">{JSON.stringify(Survey.title)}</h1>
-              <h4 className="Survey-created-by">{JSON.stringify(Survey.created_by)}</h4>
+            <div
+              id={`${Survey.id}`}
+              onClick={goToSurvey}
+              className={`Card Survey${Survey.id}`}
+              key={Survey.id}
+            >
+              <h1 id={`${Survey.id}`} 
+              className="Survey-title">
+                {JSON.stringify(Survey.title)}
+              </h1>
+              <h4 id={`${Survey.id}`} 
+              className="Survey-created-by">
+                {JSON.stringify(Survey.created_by)}
+              </h4>
             </div>
           </>
         );
