@@ -93,7 +93,8 @@ class UsersController extends Controller {
         return response()->json([
             "status" => "success",
             'username' => $user->name,
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'is_admin'=>$user->is_admin
         ], 200);
     }
 }
