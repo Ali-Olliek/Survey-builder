@@ -11,12 +11,12 @@ export default function CreateSurvey({ selected, setSelected}) {
     questions: [],
     answers: []
   });
+  const [submitted, setSubmitted] = useState(false);
 
   // Handle Inputs
   const handleTitleInput = (event) => {
     setValues({ ...values, title: event.target.value });
   };
-
   const handleCreatedInput = (event) => {
     setValues({ ...values, createdBy: event.target.value });
   };
@@ -64,58 +64,75 @@ export default function CreateSurvey({ selected, setSelected}) {
       })
       .then((response) => {
         if (response.status === 200) {
-          console.log(response)
+
+          setSubmitted(true);
+
+          setTimeout(() => {
+            setSubmitted(false)
+          }, 2000);
         }
         return response.data;
       });
   };
 
+  let user = localStorage.getItem("user");
+  user = user.split(",");
+  let username = user[0];
 
   return (
-    <form className="create-survey" onSubmit={handleSubmit}>
-      <div className="survey-control">
-        <label>Survey Title</label>
-        <input
-          onChange={handleTitleInput}
-          type="text"
-          placeholder="Add A Title"
-        />
-      </div>
+    <div className="Admin">
+      <h1 className="message">Welcome, {username}!</h1>
+      <div className="adminCard">
+        <form className="create-survey" onSubmit={handleSubmit}>
+        {submitted ? (
+          <div className="success-message">
+          Survey Added!
+          </div>
+        ) : null}
+          <div className="survey-control">
+            <label>Survey Title</label>
+            <input
+              onChange={handleTitleInput}
+              type="text"
+              placeholder="Add A Title"
+            />
+          </div>
 
-      <div className="survey-control">
-        <label>Created By</label>
-        <input
-          type="text"
-          placeholder="Created By"
-          onChange={handleCreatedInput}
-        />
-      </div>
+          <div className="survey-control">
+            <label>Created By</label>
+            <input
+              type="text"
+              placeholder="Created By"
+              onChange={handleCreatedInput}
+            />
+          </div>
 
-      <div className="survey-control">
-        <label>Question</label>
-        <input
-          onChange={handleQuestionInput}
-          type="text"
-          placeholder="Add Question"
-        />
+          <div className="survey-control">
+            <label>Question</label>
+            <input
+              onChange={handleQuestionInput}
+              type="text"
+              placeholder="Add Question"
+            />
+          </div>
+          <div>
+            <DropDown 
+            selected={selected} 
+            setSelected={setSelected} />
+          </div>
+          <div className="survey-control">
+            <label>Answer</label>
+            <input
+              onChange={handleAnswerInput}
+              type="text"
+              placeholder="Add Answer"
+            />
+          </div>
+          <button onClick={handleSubmit} type="submit">
+            Submit Survey
+          </button>
+        </form>
       </div>
-      <div>
-        <DropDown 
-        selected={selected}
-        setSelected={setSelected} 
-        />
-      </div>
-      <div className="survey-control">
-        <label>Answer</label>
-        <input
-          onChange={handleAnswerInput}
-          type="text"
-          placeholder="Add Answer"
-        />
-      </div>
-      <button onClick={handleSubmit} type="submit">
-        Submit Survey
-      </button>
-    </form>
+    </div>
   );
 }

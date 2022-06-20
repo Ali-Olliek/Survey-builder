@@ -20,30 +20,30 @@ export default function Surveys() {
   user = user.split(',');
   let username = user[0]
   return (
-    <>
-      <h1 className='message'>Welcome, {username}</h1>
-      <div className="Survey-container">
-        {Surveys.map((Survey) => {
-          return (
-            <>
-              <div
-                id={`${Survey.id}`}
-                onClick={goToSurvey}
-                className={`Card Survey${Survey.id}`}
-                key={Survey.id}
-              >
-                <h1 id={`${Survey.id}`} className="Survey-title">
-                  {JSON.stringify(Survey.title)}
-                </h1>
-                <h4 id={`${Survey.id}`} className="Survey-created-by">
-                  {JSON.stringify(Survey.created_by)}
-                </h4>
-              </div>
-            </>
-          );
-        })}
+      <div>
+        <h1 className="message">Welcome, {username}</h1>
+        <div className="Survey-container">
+          {Surveys.map((Survey) => {
+            return (
+              <>
+                <div
+                  id={`${Survey.id}`}
+                  onClick={goToSurvey}
+                  className={`Card Survey${Survey.id}`}
+                  key={Survey.id}
+                >
+                  <h1 id={`${Survey.id}`} className="Survey-title">
+                    {JSON.stringify(Survey.title)}
+                  </h1>
+                  <h4 id={`${Survey.id}`} className="Survey-created-by">
+                    {JSON.stringify(Survey.created_by)}
+                  </h4>
+                </div>
+              </>
+            );
+          })}
+        </div>
       </div>
-    </>
   );
 }
 

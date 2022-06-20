@@ -8,6 +8,13 @@
     src: url(../assets/fonts/Poppins-Light.ttf);
 }
 
+/* -------------------- */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 .form-container {
     display: flex;
     height: 100vh;
@@ -36,7 +43,7 @@
     font-size: 2rem;
 }
 .register-form > p {
-    margin-top: -60px;
+    margin-top: -20px;
     font-weight: bold;
     font-size: 1.2rem;
 }
@@ -76,7 +83,7 @@ button {
     padding-inline: 50px;
     position: absolute;
     top: 25%;
-    gap: 40px;
+    gap: 40px;   
 }
 
 .Card {
@@ -86,20 +93,70 @@ button {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 5px 5px;
+    background-color: #FFD481;
+}
+
+.Card:nth-of-type(even){
+    background-color: #DEE9E5;
+}
+
+.Main {
+    background: linear-gradient(114.44deg, rgba(0, 180, 219, 0) 31.36%, #0083B0 99.37%);
+}
+
+.Main2 {
+    background: linear-gradient(114.44deg, rgba(0, 180, 219, 0) 31.36%, #0083B0 99.37%);
 }
 
 .survey-control {
     width: 100px;
     margin-block: 40px;
     font-weight: bold;
+
 }
 
 .survey-control > input {
     height: 40px;
     border-radius: 5px;
+    padding-inline: 10px
 }
 
 .dropdown {
     border: 1px solid black;
     padding:10px;
+}
+
+
+
+.Admin {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(114.44deg, rgba(0, 180, 219, 0) 31.36%, #0083B0 99.37%);
+}
+
+.adminCard {
+    width: 30vw;
+    display: flex;
+    justify-content: space-around;
+    background-color: #FFD481;
+    padding-block: 40px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px black;
+}
+
+.adminCard > form > button {
+    width: 100%
+}
+
+.success-message {
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: lightgreen;
+    text-align: center;
+    padding: 20px;
+    
 }
