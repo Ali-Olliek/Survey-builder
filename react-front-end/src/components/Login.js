@@ -33,14 +33,20 @@ export default function Login() {
               password,
             })
             .then((response) => {
+              console.log(response)
               if (response.status === 200) {
                 let user = [];
-                user.push(response.data.username, response.data.user_id)
+                user.push(response.data.username, response.data.user_id, response.data.is_admin)
                 localStorage.setItem("user", JSON.stringify(user));
                 console.log("Logged In")
+                console.log(response.data.is_admin)
+                if(response.data.is_admin === 1){
+                  window.location.href = "/CreateSurvey"
+                }else if(response.data.is_admin === 0){
+                  window.location.href = "/Surveys"
+              }
                 setValues({Password: "", Email: "" })
                 setValid(true);
-                window.location.href = "/Surveys"
               }
             });
         };
