@@ -35,6 +35,8 @@ button {
 .Survey-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    padding-inline: 50px;
     position: absolute;
     top: 25%;
     gap: 40px;
