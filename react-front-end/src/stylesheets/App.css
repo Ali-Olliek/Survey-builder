@@ -1,23 +1,60 @@
+@font-face {
+    font-family: Sofia Pro;
+    src: url(../assets/fonts/sofiapro-light.otf);
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url(../assets/fonts/Poppins-Light.ttf);
+}
+
 .form-container {
     display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(114.44deg, rgba(0, 180, 219, 0) 31.36%, #0083B0 99.37%);
 }
 
 .register-form {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 30vw;
+    width: 40vw;
+    max-width: 30vw;
     height: 40vh;
-    border: 2px solid black;
-    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 50px 30px 100px rgba(0, 0, 0, 0.5);
+    border: 3px solid black;
+    background-color: #FFD481;
+    padding-inline: 20px;
+    font-family: Sofia Pro;
+}
+
+.register-form > h2 {
+    font-family: poppins;
+    font-size: 2rem;
+}
+.register-form > p {
+    margin-top: -60px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.register-form > button {
+    height: 60px;
+    padding: 10px;
+    background-color: #DEE9E5;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
 }
 
 .form-field {
+    font-size: 18px;
     height: 40px;
     padding: 10px;
+    background-color: white ;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5) ;
     border-radius: 5px;
 }
 
@@ -26,7 +63,7 @@ button {
     border-radius: 5px;
 }
 
-#root {
+.app {
     display: flex;
     align-items:center;
     justify-content: center;
