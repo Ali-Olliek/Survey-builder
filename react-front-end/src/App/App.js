@@ -15,16 +15,19 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />}>
-        </Route>
-        <Route path="/SignUp" element={<SignUp />}>
-        </Route>
-        <Route path="/Surveys" element={<Surveys />}>
-        </Route>
-        <Route path="/CreateSurvey" element={<CreateSurvey selected={selected} setSelected = {setSelected}/>}>
-        </Route>
-        <Route path="/Survey" element={<Survey/>}>
-        </Route>
+        <Route path="/" element={<Login />}></Route>
+        <Route path="/SignUp" element={<SignUp />}></Route>
+        <Route
+          path="/Surveys"
+          element={<Surveys />}
+        ></Route>
+        <Route
+          path="/CreateSurvey"
+          element={
+            <CreateSurvey selected={selected} setSelected={setSelected} />
+          }
+        ></Route>
+        <Route path="/Survey" element={<Survey />}></Route>
       </Routes>
     </Router>
   );
