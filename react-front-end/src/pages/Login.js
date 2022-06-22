@@ -45,9 +45,9 @@ export default function Login() {
 
             // Admin/User Switch
             if(response.data.is_admin === 1){ 
-              window.location.href = "/CreateSurvey"
+              window.location.href = "/Admin/CreateSurvey"
             }else if(response.data.is_admin === 0){
-              window.location.href = "/Surveys"
+              window.location.href = "/SurveysList"
           }
             setValues({Password: "", Email: "" })
             setValid(true);

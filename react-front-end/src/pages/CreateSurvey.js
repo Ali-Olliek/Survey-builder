@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DropDown from './DropDown';
+import DropDown from '../components/DropDown';
 import axios from 'axios';
 
 export default function CreateSurvey({ selected, setSelected}) {
@@ -26,6 +26,14 @@ export default function CreateSurvey({ selected, setSelected}) {
   const handleAnswerInput = (event) => {
     setValues({ ...values, answers: event.target.value });
   };
+
+  const handleAddQuestion = (event) => {
+    event.preventDefault();
+    let newQuestion = {    
+    questions: [],
+    };
+    setValues([ newQuestion ]);
+  }
 
   // Submitting Survey
   const handleSubmit = async (event) => {
@@ -75,13 +83,13 @@ export default function CreateSurvey({ selected, setSelected}) {
       });
   };
 
-  let user = localStorage.getItem("user");
-  user = user.split(",");
-  let username = user[0];
+  // let user = localStorage.getItem("user");
+  // user = user.split(",");
+  // let username = user[0];
 
   return (
     <div className="Admin">
-      <h1 className="message">Welcome, {username}!</h1>
+      {/* <h1 className="message">Welcome, {username}!</h1> */}
       <div className="adminCard">
         <form className="create-survey" onSubmit={handleSubmit}>
         {submitted ? (
@@ -128,6 +136,7 @@ export default function CreateSurvey({ selected, setSelected}) {
               placeholder="Add Answer"
             />
           </div>
+          <button type="button" onClick={handleAddQuestion}>Add A New Question</button>
           <button onClick={handleSubmit} type="submit">
             Submit Survey
           </button>
