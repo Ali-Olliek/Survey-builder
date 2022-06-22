@@ -1,147 +1,125 @@
-import React, { useState } from 'react';
-import DropDown from '../components/DropDown';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function CreateSurvey({ selected, setSelected}) {
-  
-  // Value States
-  const [values, setValues] = useState({
-    title: "",
-    createdBy: "",
-    questions: [],
-    answers: []
-  });
-  const [submitted, setSubmitted] = useState(false);
+const CreateSurvey = () => {
+  //States
+  const [title, setTitle] = useState("");
+  const [createdBy, setCreatedBy] = useState("");
+  const [inputFields, setInputFields] = useState([
+    {
+      content: "",
+      type: "textBox",
+      answers: [],
+      currentAnswer: "",
+    },
+  ]);
 
-  // Handle Inputs
-  const handleTitleInput = (event) => {
-    setValues({ ...values, title: event.target.value });
-  };
-  const handleCreatedInput = (event) => {
-    setValues({ ...values, createdBy: event.target.value });
-  };
-  const handleQuestionInput = (event) => {
-    setValues({ ...values, questions: event.target.value });
-  };
-  const handleAnswerInput = (event) => {
-    setValues({ ...values, answers: event.target.value });
+  const questionTypes = ["textBox", "checkBox", "radio", "dropdown"];
+
+  const handleFormChange = (index, e) => {
+    let data = [...inputFields];
+    data[index][e.target.name] = e.target.value;
+    setInputFields(data);
   };
 
-  const handleAddQuestion = (event) => {
-    event.preventDefault();
-    let newQuestion = {    
-    questions: [],
+  const handleCreateNewQuestion = (e) => {
+    let newQuestion = {
+      content: "",
+      type: "textBox",
+      answers: [],
+      currentAnswer: "",
     };
-    setValues([ newQuestion ]);
+    setInputFields([...inputFields, newQuestion]);
+  };
+
+  const handleAddAnswer = (index, newAnswer) => {
+    console.log(newAnswer)
+    let answer = [...inputFields]; // Assign Answer To The Whole Inputs Array
+    answer[index].answers.push(newAnswer); // Push the new Answer to the existing Array
+    setInputFields(answer); // update State
+  };
+  
+  const handleSubmit = () => {
+    return
   }
 
-  // Submitting Survey
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if(!values.title && !values.question){
-      alert("Please Fill Out a Title and a Question")
-    }
-
-    let surveyTitle = values.title;
-    let surveyCreatedBy = values.createdBy;
-    let question_type = "Question Type"; // Need to get selected option from component
-    
-    let question = []; // Backend will recieve a JSON object
-    let answers = []; // With Nested Arrays
-    let questions = [];
-    
-    // Question Content and Type 
-    let content = values.questions
-    question.push(question_type)
-    question.push(content)
-    
-    // Answers Content
-    content = values.answers
-
-    //Sample Survey => { "surveyTitle":"Survey I", "surveyCreatedBy":"Created By Survey I","questions":[["Question 1","Question Type 1",["Answer 1","Answer 2","Answer 3"]],]}
-
-    answers.push(content)
-    question.push(answers)
-    questions.push(question)
-    
-    return axios
-      .post("http://127.0.0.1:8000/api/v1/Admin/CreateSurveys", {
-        surveyTitle,
-        surveyCreatedBy,
-        questions,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-
-          setSubmitted(true);
-
-          setTimeout(() => {
-            setSubmitted(false)
-          }, 2000);
-        }
-        return response.data;
-      });
-  };
-
-  // let user = localStorage.getItem("user");
-  // user = user.split(",");
-  // let username = user[0];
-
   return (
-    <div className="Admin">
-      {/* <h1 className="message">Welcome, {username}!</h1> */}
-      <div className="adminCard">
-        <form className="create-survey" onSubmit={handleSubmit}>
-        {submitted ? (
-          <div className="success-message">
-          Survey Added!
-          </div>
-        ) : null}
-          <div className="survey-control">
-            <label>Survey Title</label>
-            <input
-              onChange={handleTitleInput}
-              type="text"
-              placeholder="Add A Title"
-            />
-          </div>
-
-          <div className="survey-control">
-            <label>Created By</label>
-            <input
-              type="text"
-              placeholder="Created By"
-              onChange={handleCreatedInput}
-            />
-          </div>
-
-          <div className="survey-control">
-            <label>Question</label>
-            <input
-              onChange={handleQuestionInput}
-              type="text"
-              placeholder="Add Question"
-            />
-          </div>
-          <div>
-            <DropDown 
-            selected={selected} 
-            setSelected={setSelected} />
-          </div>
-          <div className="survey-control">
-            <label>Answer</label>
-            <input
-              onChange={handleAnswerInput}
-              type="text"
-              placeholder="Add Answer"
-            />
-          </div>
-          <button type="button" onClick={handleAddQuestion}>Add A New Question</button>
-          <button onClick={handleSubmit} type="submit">
-            Submit Survey
-          </button>
-        </form>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <p>Survey Title</p>
+        <input onChange={ (e) => setTitle(e.target.value)} 
+        type="text" 
+        name="Title" 
+        value={title} />
       </div>
-    </div>
+      <div>
+        <p>Created By</p>
+        <input
+          onChange={(e) => setCreatedBy(e.target.value)}
+          type="text"
+          name="createdBy"
+          value={createdBy}
+        />
+      </div>
+      {inputFields.map((input, index) => {
+        return (
+          <div key={index}>
+            <p>Question Type</p>
+            <select
+              value={input.type}
+              name="type"
+              onChange={(e) => {
+                handleFormChange(index, e);
+              }}
+            >
+              {questionTypes.map((type) => {
+                return <option value={type}>{type}</option>;
+              })}
+            </select>
+            <p>Question Context</p>
+            <input
+              placeholder="Question's Context"
+              type="text"
+              name="context"
+              value={inputFields.content}
+              onChange={(e) => {
+                handleFormChange(index, e);
+              }}
+            />
+            {(input.type === "dropdown" || input.type === "radio") && (
+              <div>
+                <p>Choices: </p>
+                <input
+                  type={"text"}
+                  name="currentAnswer"
+                  onChange={(e) => {
+                    handleFormChange(index, e);
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleAddAnswer(index, input.currentAnswer);
+                  }}
+                >
+                  Add Choice
+                </button>
+                {input.answers.map((answer) => {
+                  return <div>{answer}</div>;
+                })}
+              </div>
+            )}
+          </div>
+        );
+      })}
+      <button 
+      type="button" 
+      onClick={handleCreateNewQuestion}>
+        Add More
+      </button>
+      <button type="submit">Create New Survey</button>
+    </form>
   );
-}
+};
+
+export default CreateSurvey;
