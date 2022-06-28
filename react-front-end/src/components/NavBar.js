@@ -19,7 +19,7 @@ return (
                 );
             })}
             {location.pathname.includes("admin") && (
-                <NavLink to = "/admin/CreateSurveys">
+                <NavLink to = "/admin/CreateSurvey">
                     <li>Create Survey</li>
                 </NavLink>
             )}

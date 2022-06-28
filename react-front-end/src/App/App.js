@@ -15,16 +15,16 @@ function App() {
   
 return (
   <Router>
-    <NavBar/>
-    <Routes>
+      {/* <NavBar /> */}
+    <Routes path="/auth">
+      <Route path="/SignUp" element={<SignUp />}></Route>
       <Route path="/" element={<Login />}></Route>
-        <Route path="/SignUp" element={<SignUp />}></Route>
-        <Route path="/Survey" element={<Survey />}></Route>
-        <Route path="/SurveysList" element={<Surveys />}></Route>
-        <Route path="/Admin/CreateSurvey" element={<CreateSurvey />}></Route>
+      <Route path="/Survey" element={<Survey />}></Route>
+      <Route path="/SurveysList" element={<Surveys />}></Route>
+      <Route path="/Admin/CreateSurvey" element={<CreateSurvey />}></Route>
     </Routes>
   </Router>
-  );
+);
 }
 
 export default App;
