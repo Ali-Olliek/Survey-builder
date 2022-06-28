@@ -61,6 +61,7 @@
 }
 
 .form-field {
+    width: 100%;
     font-size: 18px;
     height: 40px;
     padding: 10px;
@@ -198,4 +199,134 @@ button {
     height: 100vh;
     width: 100vw;
     background: linear-gradient(114.44deg, rgba(0, 180, 219, 0) 31.36%, #0083B0 99.37%);
+}
+
+.adminPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #FFD481;
+    height: 100vh;
+}
+
+.Top-Bar {
+    font-family: Sofia Pro;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25vh;
+    background-color:#FFD481;
+    border-block: 2px solid black;
+    padding-block: 50px;
+}
+
+.Top-Bar > ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+li {
+    height: auto;
+    margin: 50px;
+    text-decoration:none;
+    background-color:white;
+    padding: 15px;
+    border-radius: 10px;
+    color: black;
+    border: 2px solid black;
+}
+
+li:hover {
+    background-color:#0083B0;
+    transform: scale(1.1);
+}
+
+li:active {
+    transform: scale(0.9);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 2rem;
+}
+
+form {
+    height: 50vh;
+    margin-top: 50px;
+}
+
+p {
+    font-family: Poppinsb;
+}
+
+select {
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    text-align: center;
+    margin-block: 10px;
+}
+
+input {
+    margin-block: 10px;
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #FFD481;
+    padding-inline: 10px;
+}
+
+
+.add {
+    border: 3px solid #0083B0;
+    width: 200px;
+    margin-block: 20px;
+}
+
+
+.submit {
+    width: 300px;
+    background-color: #0083B0;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.submit:hover {
+    transform: scale(1.1);
+}
+
+.submit:active {
+    transform: scale(0.9);
+}
+
+
+.answer {
+    margin-left: 10px;
+    padding-inline: 10px;
+    background-color: #DEE9E5;
+}
+
+.answer:hover {
+    background-color: #DEE9E8;
+}
+
+
+.choice {
+    height: 30px;
+    width: max-content;
+    border: 1px solid black;
+    margin-block: 5px;
+    padding: 5px;
+}
+
+.choices {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
