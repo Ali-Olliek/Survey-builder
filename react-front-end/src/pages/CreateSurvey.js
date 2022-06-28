@@ -38,17 +38,17 @@ const CreateSurvey = () => {
     answer[index].answers.push(newAnswer); // Push the new Answer to the existing Array
     setInputFields(answer); // update State
   };
-console.log(inputFields.content)
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(title, createdBy, inputFields.content, inputFields.type);
+
     let surveyTitle = title;
     let surveyCreatedBy = createdBy;
     let questions = [];
-    let question = [inputFields.content, inputFields.type, [inputFields.answers]]
+    let question = [inputFields[0].content, inputFields[0].type, inputFields[0].answers]
     questions.push(question)
 
-    console.log(questions)
     return axios
       .post("http://127.0.0.1:8000/api/v1/Admin/CreateSurveys", {
         surveyTitle,
@@ -118,7 +118,7 @@ console.log(inputFields.content)
               <input
                 placeholder="Question's Context"
                 type="text"
-                name="context"
+                name="content"
                 value={inputFields.content}
                 onChange={(e) => {
                   handleFormChange(index, e);
